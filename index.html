@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#070b10">
+  <title>BADAK APPS V3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="intro" class="intro">
+  <video id="introVideo" class="intro-video" autoplay muted playsinline></video>
+  <div class="introShade"></div>
+  <div class="introBrand"><span>🦏</span> BADAK APPS <b>V3</b></div>
+  <button id="skipBtn" class="skip">LEWATI ›</button>
+  <button id="musicBtn" class="music-top" aria-label="Musik">🔇</button>
+  <div class="introBottom">
+    <div class="loaderLine"><i id="introProgress"></i></div>
+    <small>MEMUAT BADAK APPS V3</small>
+  </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto"></audio>
+
+<div id="app" class="app hidden">
+  <header class="topbar">
+    <button id="menuBtn" class="iconBtn">⋮</button>
+    <div class="brand"><span>🦏</span><div><strong>BADAK APPS</strong><small>V3 • DASHBOARD</small></div></div>
+    <button id="profileQuick" class="avatarBtn">👤</button>
+  </header>
+
+  <aside id="sideMenu" class="sideMenu">
+    <div class="menuHead"><b>BADAK MENU</b><button id="closeMenu">×</button></div>
+    <div class="clockBox"><div id="clock">00:00:00</div><div id="date">-</div></div>
+    <button data-page="dashboard">🏠 Dashboard Badak</button>
+    <button data-page="announcement">📢 Pengumuman</button>
+    <button data-page="games">🎮 Game Ludo & Catur</button>
+    <button data-page="profile">👤 Profil</button>
+    <button id="logoutBtn" class="danger">↪ Logout</button>
+  </aside>
+  <div id="backdrop" class="backdrop"></div>
+
+  <main>
+    <section id="dashboard" class="page active">
+      <div class="heroCard">
+        <div>
+          <span class="eyebrow">BADAK WA</span>
+          <h1>BADAK APPS V3 🦏</h1>
+          <p>Masukkan nomor, pilih jumlah Badak, lalu konfirmasi proses.</p>
+        </div>
+        <div class="rhino">🦏</div>
+      </div>
+
+      <div class="panel">
+        <label>Nomor</label>
+        <input id="numberInput" inputmode="numeric" placeholder="Contoh: 628xxxxxxxxxx">
+        <label>Pilih jumlah Badak</label>
+        <div id="badakOptions" class="badakGrid">
+          <button data-count="20">20 BADAK</button><button data-count="30">30 BADAK</button>
+          <button data-count="70">70 BADAK</button><button data-count="100">100 BADAK</button>
+          <button data-count="130">130 BADAK</button><button data-count="190">190 BADAK</button>
+          <button data-count="399">399 BADAK</button>
+        </div>
+        <p class="hint">Silahkan pilih salah satu</p>
+        <button id="confirmBtn" class="primary">⚡ KONFIRMASI BADAK</button>
+        <div id="processBox" class="process hidden">
+          <div class="spinner">🦏</div>
+          <h3 id="processTitle">Tunggu sebentar...</h3>
+          <p>Proses Badak masih berlanjut</p>
+          <div class="progress"><i id="processProgress"></i></div>
+          <b id="percent">0%</b>
+        </div>
+        <div id="successBox" class="success hidden">BADAK SUKSES ✅</div>
+      </div>
+
+      <div class="stats">
+        <div><span id="successCount">0</span><small>SUKSES</small></div>
+        <div><span id="failCount">0</span><small>GAGAL</small></div>
+        <div><span id="totalCount">0</span><small>RIWAYAT</small></div>
+      </div>
+    </section>
+
+    <section id="announcement" class="page">
+      <div class="sectionTitle">📢 Pengumuman</div>
+      <div class="announce">
+        <div class="announceIcon">!</div>
+        <h2>Info Penting</h2>
+        <p>Jika website bermasalah atau proses tidak berjalan, silakan hubungi Admin CEO RAFFSTR JOKI ELITE.</p>
+        <a class="adminBtn" href="https://wa.me/6283817546555" target="_blank">💬 HUBUNGI ADMIN</a>
+        <small>Nomor khusus bantuan: 6283817546555</small>
+      </div>
+    </section>
+
+    <section id="games" class="page">
+      <div class="sectionTitle">🎮 Game Bareng Teman</div>
+      <div class="gameTabs"><button class="gameTab active" data-game="ludo">🎲 Ludo</button><button class="gameTab" data-game="chess">♟️ Catur</button></div>
+      <div id="ludoGame" class="gameCard">
+        <h2>Ludo Mini</h2><p>Game lokal 2–4 pemain. Lempar dadu bergantian di satu HP.</p>
+        <div id="ludoStatus" class="turn">Giliran Pemain 1</div>
+        <div class="ludoBoard" id="ludoBoard"></div>
+        <button id="diceBtn" class="dice">🎲 Lempar Dadu <b id="diceVal">-</b></button>
+        <button id="resetLudo" class="secondary">Reset Ludo</button>
+      </div>
+      <div id="chessGame" class="gameCard hidden">
+        <h2>Catur Mini</h2><p>Catur lokal 2 pemain. Ketuk bidak lalu ketuk kotak tujuan.</p>
+        <div id="chessBoard" class="chessBoard"></div>
+        <button id="resetChess" class="secondary">Reset Catur</button>
+      </div>
+    </section>
+
+    <section id="profile" class="page">
+      <div class="sectionTitle">👤 Profil</div>
+      <div class="profileCard">
+        <button id="photoBtn" class="profilePhoto">👤<input id="photoInput" type="file" accept="image/*" hidden></button>
+        <h2 id="profileName">BADAK USER</h2>
+        <p>Member BADAK APPS V3</p>
+        <button id="changeName" class="secondary">✏️ Ganti Nama</button>
+        <button id="changePhoto" class="secondary">🖼️ Ubah Foto Profil</button>
+      </div>
+      <div class="profileButtons">
+        <button data-page="history">📜 Riwayat Badak</button>
+        <button id="loginDetailBtn">🔐 Detail Login</button>
+        <button id="logoutProfile" class="dangerWide">↪ Logout</button>
+      </div>
+    </section>
+
+    <section id="history" class="page">
+      <div class="sectionTitle">📜 Riwayat Badak</div>
+      <div class="historySummary"><div>✅ <b id="hSuccess">0</b><small>Sukses</small></div><div>❌ <b id="hFail">0</b><small>Gagal</small></div><div>📋 <b id="hTotal">0</b><small>Total</small></div></div>
+      <div id="historyList" class="historyList"><div class="empty">Belum ada riwayat Badak.</div></div>
+    </section>
+  </main>
+
+  <nav class="bottomNav">
+    <button class="nav active" data-page="dashboard">🏠<span>Dashboard Badak</span></button>
+    <button class="nav" data-page="games">🎮<span>Game</span></button>
+    <button class="nav" data-page="announcement">📢<span>Pengumuman</span></button>
+    <button class="nav" data-page="profile">👤<span>Profil</span></button>
+  </nav>
+  <div id="toast"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
